@@ -7,6 +7,18 @@
          metadata-complete="true">
   <display-name>Archetype Created Web Application</display-name>
 
+  <!--log4j-->
+  <context-param>
+    <param-name>log4jRefreshInterval</param-name>
+    <param-value>60000</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>web.mall.root</param-value>
+  </context-param>
+
+
   <servlet>
     <servlet-name>spring</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

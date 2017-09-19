@@ -1,10 +1,11 @@
 package com.gaige.mall.common;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JsonResponseWarp {
-    private static final Log log = LogFactory.getLog(JsonResponseWarp.class);
+    private static final Logger log = LoggerFactory.getLogger(JsonResponseWarp.class);
 
     /**
      * warp exception data
@@ -14,9 +15,11 @@ public class JsonResponseWarp {
 
         if (e!=null && e instanceof BusinessException){
             jsonResponse.setMsg(e.getMessage());
+            log.debug(e.getMessage());
         }
 
         jsonResponse.setStatus(ResponseStatus.BIZ_ERR);
+        LogUtils.logError(exceptionMsg, e);
         jsonResponse.setCode("202");
     }
 
@@ -27,6 +30,7 @@ public class JsonResponseWarp {
         jsonResponse.setData(result);
         jsonResponse.setMsg(msg);
         jsonResponse.setCode("200");
+        log.info(JSON.toJSONString(result));
         jsonResponse.setStatus(ResponseStatus.Ok);
     }
 }
