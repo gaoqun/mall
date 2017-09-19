@@ -18,7 +18,6 @@
     <param-value>web.mall.root</param-value>
   </context-param>
 
-
   <servlet>
     <servlet-name>spring</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -106,12 +105,21 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <!--default welcome page-->
-  <!--<welcome-file-list>-->
-    <!--<welcome-file>login.html</welcome-file>-->
-  <!--</welcome-file-list>-->
-  <!---->
-  <!--<error-page>-->
-    <!--<location>/goods/error.jsp</location>-->
-  <!--</error-page>-->
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/hello.jsp</welcome-file>
+  </welcome-file-list>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/pages/exceptionPages/error.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/pages/exceptionPages/error.jsp</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.lang.Throwable</exception-type>
+    <location>/WEB-INF/pages/exceptionPages/error.jsp</location>
+  </error-page>
+
 </web-app>

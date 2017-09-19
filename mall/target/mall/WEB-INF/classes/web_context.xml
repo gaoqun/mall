@@ -20,11 +20,12 @@
     <!--static resouce的访问 js image-->
     <mvc:default-servlet-handler/>
 
-    <mvc:resources mapping="/jsp/**" location="/WEB-INF/pages/jsp/"/>
+    <mvc:resources mapping="/jsp/**" location="/WEB-INF/pages/exceptionPages/"/>
     <mvc:resources mapping="/js/**" location="/res/js/"/>
     <mvc:resources mapping="/css/**" location="/res/css/"/>
     <mvc:resources mapping="/font/**" location="/res/font/"/>
     <mvc:resources mapping="/image/**" location="/res/image/"/>
+
 
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -84,6 +85,28 @@
                 <prop key="java.lang.NullPointerException">outException</prop>
                 <prop key="java.sql.SQLException">outException</prop>
                 <prop key="java.io.IOException">outException</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 系统错误转发配置[并记录错误日志]   -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView" value="error"></property>   <!-- 默认为500，系统错误(error.jsp)  -->
+        <property name="defaultStatusCode" value="500"></property>
+        <property name="statusCodes"><!-- 配置多个statusCode -->
+            <props>
+                <prop key="/exceptionPage/error">500</prop>  <!-- error.jsp -->
+                <prop key="/exceptionPage/error">404</prop>    <!-- error1.jsp -->
+            </props>
+        </property>
+        <property name="exceptionMappings">
+            <props>
+                <!-- 这里你可以根据需要定义N多个错误异常转发 -->
+                <prop key="java.sql.SQLException">dbError</prop> <!-- 数据库错误(dbError.jsp) -->
+                <prop key="org.springframework.web.bind.ServletRequestBindingException">bizError</prop> <!-- 参数绑定错误(如：必须参数没传递)(bizError.jsp) -->
+                <prop key="java.lang.IllegalArgumentException">bizError</prop>  <!-- 参数错误(bizError.jsp) -->
+                <prop key="org.springframework.validation.BindException">bizError</prop>  <!-- 参数类型有误(bizError.jsp) -->
+                <prop key="java.lang.Exception">unknowError</prop>  <!-- 其他错误为'未定义错误'(unknowError.jsp)  -->
             </props>
         </property>
     </bean>
