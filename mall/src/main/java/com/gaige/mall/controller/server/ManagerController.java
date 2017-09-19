@@ -35,12 +35,12 @@ public class ManagerController {
 
     @RequestMapping("index")
     public String loginPage() {
-        return "login";
+        return "/WEB-INF/pages/login.jsp";
     }
 
     @RequestMapping("menu")
     public String managerMenu() {
-        return "menu";
+        return "/WEB-INF/pages/menu.jsp";
     }
 
     /**

@@ -61,7 +61,7 @@ public class UserController {
 
     @RequestMapping("forgetPwd")
     public String forgetPwd() {
-        return "forgot_pwd";
+        return "/WEB-INF/pages/forgot_pwd.jsp";
     }
 
     /**

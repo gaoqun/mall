@@ -44,7 +44,7 @@ public class GoodsController {
             request.setAttribute("goods", goodsVo_s);
             request.setAttribute("filePath", "file:" + request.getServletContext().getRealPath("/myFile/"));
         }
-        return "index";
+        return "/WEB-INF/pages/index.jsp";
     }
 
     //跳转到最后一页
@@ -69,7 +69,7 @@ public class GoodsController {
             request.setAttribute("goods", goodsVo_s);
             request.setAttribute("filePath", "file:" + request.getServletContext().getRealPath("/myFile/"));
         }
-        return "index";
+        return "/WEB-INF/pages/index.jsp";
     }
 
     @RequestMapping("{id}")
@@ -82,7 +82,7 @@ public class GoodsController {
         }finally {
             request.setAttribute("goods",goodsVo_s);
         }
-        return "goods_detail";
+        return "/WEB-INF/pages/goods_detail.jsp";
     }
 
     //添加到购物车
