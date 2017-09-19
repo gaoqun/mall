@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaige.mall.vo.ManagerVo">
+    <resultMap id="baseResultMap" type="com.gaige.mall.vo.ManagerVo">
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="manager_login" resultMap="baseResultMap" parameterType="Map">
+        SELECT * FROM user_info WHERE name=#{name} and password=#{password} limit 1;
+    </select>
+
+</mapper>

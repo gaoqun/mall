@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gaige.mall.vo.UserVo">
+    <resultMap id="baseResultMap" type="com.gaige.mall.vo.UserVo">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userName" column="username" jdbcType="VARCHAR"/>
+        <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="nickName" column="nick_name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="login" resultMap="baseResultMap" parameterType="Map">
+        SELECT * FROM user_info WHERE username=#{name} and password=#{password};
+    </select>
+
+    <select id="findUserWithId" resultMap="baseResultMap" parameterType="Map">
+        SELECT * FROM  user_info where id=#{id} limit 1;
+    </select>
+
+    <insert id="register" parameterType="Map">
+        INSERT  INTO user_info ( username,password,telephone,email,nick_name ) VALUES ( #{username},#{password},#{phone},#{email},#{nickName} );
+    </insert>
+
+</mapper>
